@@ -1,0 +1,63 @@
+export class Personagem {
+    nome
+    vida = 100
+    mana = 100
+    #level
+    tipo
+    descricao
+
+    constructor(nome) {
+        this.nome = nome,
+        this.#level = 1
+    }
+
+    get level(){
+        return this.#level
+    }
+
+    aumentarLevel(){
+         this.level += 1
+    }
+
+    diminuirLevel(){
+         this.level -= 1
+    }
+
+
+    set level(novoLevel){
+        if (novoLevel >= 1 && novoLevel <= 10) {
+            this.#level = novoLevel
+        }
+    }
+    
+    
+
+
+    insignia()  {
+        if (this.#level >= 5) {
+            return `
+             Implacavel ${this.constructor.tipo} 
+            `
+        }
+        return  `
+         Iniciante ${this.constructor.tipo} 
+        `
+    }
+
+    static verificarVencedor(personagem1, personagem2){
+        if (personagem1.level === personagem2.level) {
+            return 'Empate !!!'
+        }
+        if (personagem1.level > personagem2.level) {
+            return `
+            O ${personagem1.constructor.tipo} ${personagem1.nome} é o Vencedor !!!
+            `
+        }
+        return `
+        O ${personagem2.constructor.tipo} ${personagem2.nome} é o Vencedor !!!
+        `
+    }
+
+}
+
+
